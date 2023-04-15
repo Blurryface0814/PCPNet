@@ -98,10 +98,6 @@ After passing the ```-s``` flag or the ```-o```flag to the testing script, the p
 python visualize.py --path runs/MODEL_NAME/test_TIME/point_clouds
 ```
 
-![](docs/qualitative.png)
-*Last received point cloud at time T and the predicted next 5 future point clouds. Ground truth points
-are shown in red and predicted points in blue.*
-
 ## Download
 You can download our best performing model from [here](https://www.ipb.uni-bonn.de/html/projects/point-cloud-prediction/pretrained.zip). Just extract the zip file into ```runs```.
 
