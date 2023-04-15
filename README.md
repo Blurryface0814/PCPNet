@@ -14,7 +14,7 @@
 8. [License](#License)
 
 ![](figs/overall_architecture.png)
-*Overall architecture our proposed PCPNet*
+*Overall architecture our proposed PCPNet. The input range images are first downsampled and compressed along the height and width dimensions respectively to generate the sentence-like features for the following Transformer blocks. The features are then combined and upsampled to the predicted range images and mask images. Semantic auxiliary training is used to enhance the practical value of point cloud prediction.*
 
 ## Publication
 If you use our code in your academic work, please cite the corresponding [paper]():
