@@ -3,6 +3,9 @@
 ![](figs/motivation.png)
 *PCPNet predicts future F range images based on the given past P sequential range images. The semantic information in the sequential range images is extracted for training, making the outputs of PCPNet closer to the ground truth in semantics.*
 
+![](figs/predictions.gif)
+*Five past and five future ground truth and our five predicted future range images.*
+
 ## Contents
 1. [Publication](#Publication)
 2. [Data](#Data)
@@ -94,9 +97,6 @@ After passing the ```-s``` flag or the ```-o```flag to the testing script, the p
 ```bash
 python visualize.py --path runs/MODEL_NAME/test_TIME/point_clouds
 ```
-
-![](docs/predictions.gif)
-*Five past and five future ground truth and our five predicted future range images.*
 
 ![](docs/qualitative.png)
 *Last received point cloud at time T and the predicted next 5 future point clouds. Ground truth points
