@@ -13,8 +13,8 @@
 7. [Download](#Dwnload)
 8. [License](#License)
 
-![](docs/architecture.png)
-*Overview of our architecture*
+![](figs/overall_architecture.png)
+*Overall architecture our proposed PCPNet*
 
 ## Publication
 If you use our code in your academic work, please cite the corresponding [paper]():
@@ -42,7 +42,7 @@ to install the Chamfer distance submodule. The Chamfer distance submodule is ori
 All parameters are stored in ```config/parameters.yaml```.
 
 ### Dependencies
-In this project, we use CUDA 10.2. All other dependencies are managed with Python Poetry and can be found in the ```poetry.lock``` file. If you want to use Python Poetry, install it with:
+In this project, we use CUDA 11.4, pytorch 1.8.0 and pytorch-lightning 1.5.0. All other dependencies are managed with Python Poetry and can be found in the ```poetry.lock``` file. If you want to use Python Poetry, install it with:
 ```bash
 curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/install-poetry.py | python -
 ```
@@ -57,56 +57,42 @@ and activate the virtual environment in the shell with
 poetry shell
 ```
 
-### Export Environment Variables to dataset
-We process the data in advance to speed up training. The preprocessing is automatically done if ```GENERATE_FILES``` is set to true in ```config/parameters.yaml```. The environment variable ```PCF_DATA_RAW``` points to the directory containing the train/val/test sequences specified in the config file. It can be set with
-
-```bash
-export PCF_DATA_RAW=/path/to/kitti-odometry/dataset/sequences
-```
-
-and the destination of the processed files ```PCF_DATA_PROCESSED``` is set with
-
-```bash
-export PCF_DATA_PROCESSED=/desired/path/to/processed/data/
-```
-
 ## Training
-*Note* If you have not pre-processed the data yet, you need to set ```GENERATE_FILES: True``` in ```config/parameters.yaml```. After that, you can set ```GENERATE_FILES: False``` to skip this step.
+We process the data in advance to speed up training. The preprocessing is automatically done if ```GENERATE_FILES``` is set to true in ```config/parameters.yaml```.
 
-The training script can be run by
+If you have not pre-processed the data yet, you need to set ```GENERATE_FILES: True``` in ```config/parameters.yaml```, and run the training script by
 ```bash
-python pcf/train.py
+python train.py --rawdata /PATH/TO/RAW/KITTI/dataset/sequences --dataset /PATH/TO/PROCESSED/dataset/
 ```
-using the parameters defined in ```config/parameters.yaml```. Pass the flag ```--help``` if you want to see more options like resuming from a checkpoint or initializing the weights from a pre-trained model. A directory will be created in ```pcf/runs``` which makes it easier to discriminate between different runs and to avoid overwriting existing logs. The script saves everything like the used config, logs and checkpoints into a path ```pcf/runs/COMMIT/EXPERIMENT_DATE_TIME``` consisting of the current git commit ID (this allows you to checkout at the last git commit used for training), the specified experiment ID (```pcf``` by default) and the date and time.
+in which ```--rawdata``` points to the directory containing the train/val/test sequences specified in the config file and  ```--dataset``` points to the directory containing the processed train/val/test sequences
 
-*Example:*
-```pcf/runs/7f1f6d4/pcf_20211106_140014```
 
-```7f1f6d4```: Git commit ID
+If you have already pre-processed the data, you can set ```GENERATE_FILES: False``` to skip this step, and run the training script by
+```bash
+python train.py --dataset /PATH/TO/PROCESSED/dataset/
+```
+using the parameters defined in ```config/parameters.yaml```. 
 
-```pcf_20211106_140014```: Experiment ID, date and time
+To resume from a checkpoint, you run the training script by
+```bash
+python train.py --dataset /PATH/TO/PROCESSED/dataset/ --resume /PATH/TO/YOUR/MODEL/
+```
+You can also use the flag```--weights``` to initialize the weights from a pre-trained model. Pass the flag ```--help``` if you want to see more options.
+
+A directory will be created in ```runs``` which saves everything like the model files, used config, logs and checkpoint.
+
 
 ## Testing
 Test your model by running
 ```bash
-python pcf/test.py -m COMMIT/EXPERIMENT_DATE_TIME
+python test.py --dataset /PATH/TO/PROCESSED/dataset/ --model /PATH/TO/YOUR/MODEL/
 ```
-where ```COMMIT/EXPERIMENT_DATE_TIME``` is the relative path to your model in ```pcf/runs```. *Note*: Use the flag ```-s``` if you want to save the predicted point clouds for visualiztion and ```-l``` if you want to test the model on a smaller amount of data.
-
-*Example*
-```bash
-python pcf/test.py -m 7f1f6d4/pcf_20211106_140014
-```
-or 
-```bash
-python pcf/test.py -m 7f1f6d4/pcf_20211106_140014 -l 5 -s
-```
-if you want to test the model on 5 batches and save the resulting point clouds.
+*Note*: Use the flag ```-s``` if you want to save the predicted point clouds for visualiztion and ```-l``` if you want to test the model on a smaller amount of data. By using the flag ```-o```, you can only save the predicted point clouds without computing loss to accelerate the speed of saving.
 
 ## Visualization
-After passing the ```-s``` flag to the testing script, the predicted range images will be saved as .svg files in ```pcf/runs/COMMIT/EXPERIMENT_DATE_TIME/range_view_predictions```. The predicted point clouds are saved to ```pcf/runs/COMMIT/EXPERIMENT_DATE_TIME/test/point_clouds```. You can visualize them by running
+After passing the ```-s``` flag or the ```-o```flag to the testing script, the predicted range images will be saved as .png files in ```runs/MODEL_NAME/test_TIME/range_view_predictions```. The predicted point clouds are saved to ```runs/MODEL_NAME/test_TIME/point_clouds```. You can visualize the predicted point clouds by running
 ```bash
-python pcf/visualize.py -p pcf/runs/COMMIT/EXPERIMENT_DATE_TIME/test/point_clouds
+python visualize.py --path runs/MODEL_NAME/test_TIME/point_clouds
 ```
 
 ![](docs/predictions.gif)
@@ -117,7 +103,7 @@ python pcf/visualize.py -p pcf/runs/COMMIT/EXPERIMENT_DATE_TIME/test/point_cloud
 are shown in red and predicted points in blue.*
 
 ## Download
-You can download our best performing model from the paper [here](https://www.ipb.uni-bonn.de/html/projects/point-cloud-prediction/pretrained.zip). Just extract the zip file into ```pcf/runs```.
+You can download our best performing model from [here](https://www.ipb.uni-bonn.de/html/projects/point-cloud-prediction/pretrained.zip). Just extract the zip file into ```runs```.
 
 ## License
 This project is free software made available under the MIT License. For details see the LICENSE file.
