@@ -4,7 +4,8 @@
 
 *PCPNet predicts future F range images based on the given past P sequential range images. The semantic information in the sequential range images is extracted for training, making the outputs of PCPNet closer to the ground truth in semantics.*
 
-![](figs/predictions.gif)
+<img src="figs/predictions.gif" width="70%" />
+
 *Five past and five future ground truth and our five predicted future range images.*
 
 ## Contents
