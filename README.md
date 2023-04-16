@@ -1,12 +1,14 @@
 # PCPNet: An Efficient and Semantic-Enhanced Transformer Network for Point Cloud Prediction
 
+Developed by [Zhen Luo](https://github.com/Blurryface0814) and [Junyi Ma](https://github.com/BIT-MJY).
+
 <img src="figs/motivation.png" width="70%" />
 
-*PCPNet predicts future F range images based on the given past P sequential range images. The semantic information in the sequential range images is extracted for training, making the outputs of PCPNet closer to the ground truth in semantics.*
+*PCPNet predicts future range images based on past range image sequences. The semantic information of sequential range images is extracted for auxiliary training, making the outputs of PCPNet closer to the ground truth in semantics.*
 
-<img src="figs/predictions.gif" width="70%" />
+<img src="figs/predictions.gif" width="100%" />
 
-*Five past and five future ground truth and our five predicted future range images.*
+*Ground truth and future range images predicted by PCPNet.*
 
 ## Contents
 1. [Publication](#Publication)
