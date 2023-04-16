@@ -12,7 +12,7 @@ Developed by [Zhen Luo](https://github.com/Blurryface0814) and [Junyi Ma](https:
 
 ## Contents
 1. [Publication](#Publication)
-2. [Data](#Data)
+2. [Dataset](#Dataset)
 3. [Installation](#Installation)
 4. [Training](#Training)
 5. [Semantic-Auxiliary-Training](#Semantic-Auxiliary-Training)
@@ -31,11 +31,11 @@ If you use our code in your academic work, please cite the corresponding [paper]
 
 ```
 
-## Data
-We use the KITTI Odometry dataset for PCPNet, which you can download the dataset from the [official website](http://www.cvlibs.net/datasets/kitti/eval_odometry.php).
+## Dataset
+We use the KITTI Odometry dataset to train and evaluate PCPNet in this repo, which you can download [here](http://www.cvlibs.net/datasets/kitti/eval_odometry.php).
 
 
-Meanwhile, we use SemanticKITTI for semantic auxiliary training, which you can download the dataset from the [official website](http://semantic-kitti.org/dataset.html#download).
+Meanwhile, we use SemanticKITTI for semantic auxiliary training, which you can download [here](http://semantic-kitti.org/dataset.html#download).
 
 ## Installation
 
@@ -66,21 +66,20 @@ poetry shell
 ```
 
 ## Training
-We process the data in advance to speed up training. The preprocessing is automatically done if ```GENERATE_FILES``` is set to true in ```config/parameters.yaml```.
+We process the data in advance to speed up training. The preprocessing is automatically done if ```GENERATE_FILES``` is set to True in ```config/parameters.yaml```.
 
-If you have not pre-processed the data yet, you need to set ```GENERATE_FILES: True``` in ```config/parameters.yaml```, and run the training script by
+If you have not pre-processed the data yet, please set ```GENERATE_FILES: True``` in ```config/parameters.yaml```, and run the training script by
 ```bash
 python train.py --rawdata /PATH/TO/RAW/KITTI/dataset/sequences --dataset /PATH/TO/PROCESSED/dataset/
 ```
 in which ```--rawdata``` points to the directory containing the train/val/test sequences specified in the config file and  ```--dataset``` points to the directory containing the processed train/val/test sequences
 
-If you have already pre-processed the data, you can set ```GENERATE_FILES: False``` to skip this step, and run the training script by
+If you have already pre-processed the data, please set ```GENERATE_FILES: False``` to skip this step, and run the training script by
 ```bash
 python train.py --dataset /PATH/TO/PROCESSED/dataset/
 ```
-using the parameters defined in ```config/parameters.yaml```. 
 
-To resume from a checkpoint, you run the training script by
+To resume from a checkpoint, please run the training script by
 ```bash
 python train.py --dataset /PATH/TO/PROCESSED/dataset/ --resume /PATH/TO/YOUR/MODEL/
 ```
@@ -89,35 +88,35 @@ You can also use the flag```--weights``` to initialize the weights from a pre-tr
 A directory will be created in ```runs``` which saves everything like the model files, used config, logs and checkpoint.
 
 ## Semantic-Auxiliary-Training
-If you want to use our proposed semantic auxiliary training strategy, you need to first pre-train a semantic segmentation model. We provide codes for semantic auxiliary training using RangeNet++ in ```semantic_net/rangenet```. To use these codes, please first clone the [official codes](https://github.com/PRBonn/lidar-bonnetal) of RangeNet++ and pre-train a semantic segmentation model. 
+If you want to use our proposed semantic auxiliary training strategy, you need to first pre-train a semantic segmentation model. We provide codes for semantic auxiliary training using RangeNet++ in ```semantic_net/rangenet```. To use these codes, please first clone the [official codes](https://github.com/PRBonn/lidar-bonnetal) of RangeNet++ and train a semantic segmentation model. 
 
 *Note that we recommend using squeezesegV2 backbone without CRF and only use ```range``` in the ```input_depth``` option while training RangeNet++, according to the codes we are currently providing.* If you want to use other backbones, please make corresponding modifications to ```class loss_semantic```  in ```pcpnet/models/loss.py```.
 
 Once you have completed the pre-training, you need to copy the folder which containing the pre-trained model to ```semantic_net/rangenet/model``` and modify ```SEMANTIC_PRETRAINED_MODEL``` in ```config/parameters.yaml```  to the folder name.
 
-After completing the above steps, you can start using semantic auxiliary training by running the training script by
+After completing the above steps, you can start to use semantic auxiliary training by running the training script by
 ```bash
 python train.py --dataset /PATH/TO/PROCESSED/dataset/
 ```
-*Note* that you need to set ```LOSS_WEIGHT_SEMANTIC``` in ```config/parameters.yaml``` to the weight you want (we recommend 1.0) instead of 0.0 before you run the training script.
+*Note* that you need to set ```LOSS_WEIGHT_SEMANTIC``` in ```config/parameters.yaml``` to the weight you want (we recommend 1.0) instead of 0.0 before running the training script.
 
 ## Testing
-Test your model by running
+You can evaluate the performance of the model by running
 ```bash
 python test.py --dataset /PATH/TO/PROCESSED/dataset/ --model /PATH/TO/YOUR/MODEL/
 ```
-*Note*: Use the flag ```-s``` if you want to save the predicted point clouds for visualiztion and ```-l``` if you want to test the model on a smaller amount of data. By using the flag ```-o```, you can only save the predicted point clouds without computing loss to accelerate the speed of saving.
+*Note*: Please use the flag ```-s``` if you want to save the predicted point clouds for visualiztion, and ```-l``` if you want to test the model on a smaller amount of data. By using the flag ```-o```, you can only save the predicted point clouds without computing loss to accelerate the speed of saving.
 
 ## Visualization
 After passing the ```-s``` flag or the ```-o```flag to the testing script, the predicted range images will be saved as .png files in ```runs/MODEL_NAME/test_TIME/range_view_predictions```. The predicted point clouds are saved to ```runs/MODEL_NAME/test_TIME/point_clouds```. You can visualize the predicted point clouds by running
 ```bash
 python visualize.py --path runs/MODEL_NAME/test_TIME/point_clouds
 ```
-Download the car model from [here](https://drive.google.com/drive/folders/1bmBMdfJaN2ptJVh7gHv1Gy8L1aLMOslr?usp=share_link) and put it into ```./car_ model/``` to display the car during the visualization process.
+Please download the car model from [here](https://drive.google.com/drive/folders/1bmBMdfJaN2ptJVh7gHv1Gy8L1aLMOslr?usp=share_link) and put it into ```./car_ model/``` to display the car during the visualization process.
 
 
 ## Download
-You can download our best performing model from [here](). Just extract the zip file into ```runs```.
+You can download our pre-trained model from this [link](). Just extract the zip file into ```runs```.
 
 ## License
 This project is free software made available under the MIT License. For details see the LICENSE file.
