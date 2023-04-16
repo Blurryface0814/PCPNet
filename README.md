@@ -11,7 +11,7 @@
 2. [Data](#Data)
 3. [Installation](#Installation)
 4. [Training](#Training)
-5. [Semantic Auxiliary Training](#Semantic%2FAuxiliary%2FTraining)
+5. [Semantic Auxiliary Training](#Semantic_Auxiliary_Training)
 6. [Testing](#Testing)
 7. [Visualization](#Visualization)
 8. [Download](#Dwnload)
@@ -84,7 +84,7 @@ You can also use the flag```--weights``` to initialize the weights from a pre-tr
 
 A directory will be created in ```runs``` which saves everything like the model files, used config, logs and checkpoint.
 
-## Semantic Auxiliary Training
+## Semantic_Auxiliary_Training
 If you want to use our proposed semantic auxiliary training strategy, you need to first pre-train a semantic segmentation model. We provide codes for semantic auxiliary training using RangeNet++ in ```semantic_net/rangenet```. To use these codes, please first clone the [official codes](https://github.com/PRBonn/lidar-bonnetal) of RangeNet++ and pre-train a semantic segmentation model. 
 
 *Note that we recommend using squeezesegV2 backbone without CRF and only use ```range``` in the ```input_depth``` option while training RangeNet++, according to the codes we are currently providing.* If you want to use other backbones, please make corresponding modifications to ```class loss_semantic```  in ```pcpnet/models/loss.py```.
