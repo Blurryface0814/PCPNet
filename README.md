@@ -22,7 +22,7 @@ Developed by [Zhen Luo](https://github.com/Blurryface0814) and [Junyi Ma](https:
 9. [License](#License)
 
 ![](figs/overall_architecture.png)
-*Overall architecture our proposed PCPNet. The input range images are first downsampled and compressed along the height and width dimensions respectively to generate the sentence-like features for the following Transformer blocks. The features are then combined and upsampled to the predicted range images and mask images. Semantic auxiliary training is used to enhance the practical value of point cloud prediction.*
+*Overall architecture of our proposed PCPNet. The input range images are first downsampled and compressed along the height and width dimensions respectively to generate the sentence-like features for the following Transformer blocks. The enhanced features are then combined and upsampled to the predicted range images and mask images. Semantic auxiliary training is used to improve the practical value of point cloud prediction.*
 
 ## Publication
 If you use our code in your academic work, please cite the corresponding [paper]():
@@ -35,7 +35,7 @@ If you use our code in your academic work, please cite the corresponding [paper]
 We use the KITTI Odometry dataset to train and evaluate PCPNet in this repo, which you can download [here](http://www.cvlibs.net/datasets/kitti/eval_odometry.php).
 
 
-Meanwhile, we use SemanticKITTI for semantic auxiliary training, which you can download [here](http://semantic-kitti.org/dataset.html#download).
+Besides, we use SemanticKITTI for semantic auxiliary training, which you can download [here](http://semantic-kitti.org/dataset.html#download).
 
 ## Installation
 
@@ -85,14 +85,14 @@ python train.py --dataset /PATH/TO/PROCESSED/dataset/ --resume /PATH/TO/YOUR/MOD
 ```
 You can also use the flag```--weights``` to initialize the weights from a pre-trained model. Pass the flag ```--help``` if you want to see more options.
 
-A directory will be created in ```runs``` which saves everything like the model files, used config, logs and checkpoint.
+A directory will be created in ```runs``` which saves everything like the model files, used config, logs, and checkpoint.
 
 ## Semantic-Auxiliary-Training
 If you want to use our proposed semantic auxiliary training strategy, you need to first pre-train a semantic segmentation model. We provide codes for semantic auxiliary training using RangeNet++ in ```semantic_net/rangenet```. To use these codes, please first clone the [official codes](https://github.com/PRBonn/lidar-bonnetal) of RangeNet++ and train a semantic segmentation model. 
 
 *Note that we recommend using squeezesegV2 backbone without CRF and only use ```range``` in the ```input_depth``` option while training RangeNet++, according to the codes we are currently providing.* If you want to use other backbones, please make corresponding modifications to ```class loss_semantic```  in ```pcpnet/models/loss.py```.
 
-Once you have completed the pre-training, you need to copy the folder which containing the pre-trained model to ```semantic_net/rangenet/model``` and modify ```SEMANTIC_PRETRAINED_MODEL``` in ```config/parameters.yaml```  to the folder name.
+Once you have completed the pre-training, you need to copy the folder containing the pre-trained model to ```semantic_net/rangenet/model``` and modify ```SEMANTIC_PRETRAINED_MODEL``` in ```config/parameters.yaml```  to the folder name.
 
 After completing the above steps, you can start to use semantic auxiliary training by running the training script by
 ```bash
@@ -105,7 +105,7 @@ You can evaluate the performance of the model by running
 ```bash
 python test.py --dataset /PATH/TO/PROCESSED/dataset/ --model /PATH/TO/YOUR/MODEL/
 ```
-*Note*: Please use the flag ```-s``` if you want to save the predicted point clouds for visualiztion, and ```-l``` if you want to test the model on a smaller amount of data. By using the flag ```-o```, you can only save the predicted point clouds without computing loss to accelerate the speed of saving.
+*Note*: Please use the flag ```-s``` if you want to save the predicted point clouds for visualization, and ```-l``` if you want to test the model on a smaller amount of data. By using the flag ```-o```, you can only save the predicted point clouds without computing loss to accelerate the speed of saving.
 
 ## Visualization
 After passing the ```-s``` flag or the ```-o```flag to the testing script, the predicted range images will be saved as .png files in ```runs/MODEL_NAME/test_TIME/range_view_predictions```. The predicted point clouds are saved to ```runs/MODEL_NAME/test_TIME/point_clouds```. You can visualize the predicted point clouds by running
