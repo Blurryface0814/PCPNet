@@ -1,6 +1,12 @@
 # PCPNet: An Efficient and Semantic-Enhanced Transformer Network for Point Cloud Prediction
 
-![](figs/motivation.png)
+<style>
+img[alt="size"]{
+  width:70%;
+}
+</style>
+
+![size](figs/motivation.png)
 *PCPNet predicts future F range images based on the given past P sequential range images. The semantic information in the sequential range images is extracted for training, making the outputs of PCPNet closer to the ground truth in semantics.*
 
 ![](figs/predictions.gif)
@@ -111,7 +117,7 @@ python visualize.py --path runs/MODEL_NAME/test_TIME/point_clouds
 ```
 
 ## Download
-You can download our best performing model from [here](https://drive.google.com/drive/folders/1p9q_SoXOsigi8vB_bXxWNZbU-ypSm19J?usp=share_link). Just extract the zip file into ```runs```.
+You can download our best performing model from [here](). Just extract the zip file into ```runs```.
 
 ## License
 This project is free software made available under the MIT License. For details see the LICENSE file.
