@@ -11,7 +11,7 @@
 2. [Data](#Data)
 3. [Installation](#Installation)
 4. [Training](#Training)
-5. [Semantic Auxiliary Training](#Semantic%20Auxiliary%20Training)
+5. [Semantic Auxiliary Training](#Semantic%2FAuxiliary%2FTraining)
 6. [Testing](#Testing)
 7. [Visualization](#Visualization)
 8. [Download](#Dwnload)
