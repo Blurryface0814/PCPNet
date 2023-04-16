@@ -22,7 +22,7 @@ Developed by [Zhen Luo](https://github.com/Blurryface0814) and [Junyi Ma](https:
 9. [License](#License)
 
 ![](figs/overall_architecture.png)
-*Overall architecture of our proposed PCPNet. The input range images are first downsampled and compressed along the height and width dimensions respectively to generate the sentence-like features for the following Transformer blocks. The enhanced features are then combined and upsampled to the predicted range images and mask images. Semantic auxiliary training is used to improve the practical value of point cloud prediction.*
+*Overall architecture of our proposed PCPNet. The input range images are first downsampled and compressed along the height and width dimensions respectively to generate the sentence-like features for the following Transformer blocks. The enhanced features are then combined and upsampled to the predicted range images and mask images. Semantic auxiliary training is used to improve the practical value of predicted point clouds.*
 
 ## Publication
 If you use our code in your academic work, please cite the corresponding [paper]():
