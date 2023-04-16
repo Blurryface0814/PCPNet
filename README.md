@@ -113,6 +113,8 @@ After passing the ```-s``` flag or the ```-o```flag to the testing script, the p
 ```bash
 python visualize.py --path runs/MODEL_NAME/test_TIME/point_clouds
 ```
+Download the car model from [here]() and copy it to ```./car_ model/``` to display the car during the visualization process.
+
 
 ## Download
 You can download our best performing model from [here](). Just extract the zip file into ```runs```.
