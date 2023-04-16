@@ -111,7 +111,7 @@ python visualize.py --path runs/MODEL_NAME/test_TIME/point_clouds
 ```
 
 ## Download
-You can download our best performing model from [here](https://www.ipb.uni-bonn.de/html/projects/point-cloud-prediction/pretrained.zip). Just extract the zip file into ```runs```.
+You can download our best performing model from [here](). Just extract the zip file into ```runs```.
 
 ## License
 This project is free software made available under the MIT License. For details see the LICENSE file.
