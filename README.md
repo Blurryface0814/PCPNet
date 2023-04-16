@@ -1,12 +1,7 @@
 # PCPNet: An Efficient and Semantic-Enhanced Transformer Network for Point Cloud Prediction
 
-<style>
-img[alt="size"]{
-  width:70%;
-}
-</style>
+<img src="figs/motivation.png" width="70%" />
 
-![size](figs/motivation.png)
 *PCPNet predicts future F range images based on the given past P sequential range images. The semantic information in the sequential range images is extracted for training, making the outputs of PCPNet closer to the ground truth in semantics.*
 
 ![](figs/predictions.gif)
