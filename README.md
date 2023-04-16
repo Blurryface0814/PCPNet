@@ -11,10 +11,11 @@
 2. [Data](#Data)
 3. [Installation](#Installation)
 4. [Training](#Training)
-5. [Testing](#Testing)
-6. [Visualization](#Visualization)
-7. [Download](#Dwnload)
-8. [License](#License)
+5. [Semantic Auxiliary Training](#Semantic Auxiliary Training)
+6. [Testing](#Testing)
+7. [Visualization](#Visualization)
+8. [Download](#Dwnload)
+9. [License](#License)
 
 ![](figs/overall_architecture.png)
 *Overall architecture our proposed PCPNet. The input range images are first downsampled and compressed along the height and width dimensions respectively to generate the sentence-like features for the following Transformer blocks. The features are then combined and upsampled to the predicted range images and mask images. Semantic auxiliary training is used to enhance the practical value of point cloud prediction.*
@@ -69,7 +70,6 @@ python train.py --rawdata /PATH/TO/RAW/KITTI/dataset/sequences --dataset /PATH/T
 ```
 in which ```--rawdata``` points to the directory containing the train/val/test sequences specified in the config file and  ```--dataset``` points to the directory containing the processed train/val/test sequences
 
-
 If you have already pre-processed the data, you can set ```GENERATE_FILES: False``` to skip this step, and run the training script by
 ```bash
 python train.py --dataset /PATH/TO/PROCESSED/dataset/
@@ -83,6 +83,21 @@ python train.py --dataset /PATH/TO/PROCESSED/dataset/ --resume /PATH/TO/YOUR/MOD
 You can also use the flag```--weights``` to initialize the weights from a pre-trained model. Pass the flag ```--help``` if you want to see more options.
 
 A directory will be created in ```runs``` which saves everything like the model files, used config, logs and checkpoint.
+
+
+
+## Semantic Auxiliary Training
+If you want to use our proposed semantic auxiliary training strategy, you need to first pre-train a semantic segmentation model. We provide codes for semantic auxiliary training using RangeNet++ in ```semantic_net/rangenet```. To use these codes, please first clone the [official codes](https://github.com/PRBonn/lidar-bonnetal) of RangeNet++ and pre-train a semantic segmentation model. 
+
+*Note that we recommend using squeezesegV2 backbone without CRF and only use ```range``` in the ```input_depth``` option while training RangeNet++, according to the codes we are currently providing.* If you want to use other backbones, please make corresponding modifications to ```class loss_semantic```  in ```pcpnet/models/loss.py```.
+
+Once you have completed the pre-training, you need to copy the folder which containing the pre-trained model to ```semantic_net/rangenet/model``` and modify ```SEMANTIC_PRETRAINED_MODEL``` in ```config/parameters.yaml```  to the folder name.
+
+After completing the above steps, you can start using semantic auxiliary training by running the training script by
+```bash
+python train.py --dataset /PATH/TO/PROCESSED/dataset/
+```
+*Note* that you need to set ```LOSS_WEIGHT_SEMANTIC``` in ```config/parameters.yaml``` to the weight you want (we recommend 1.0) instead of 0.0 before you run the training script.
 
 
 ## Testing
