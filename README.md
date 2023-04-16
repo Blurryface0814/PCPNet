@@ -84,8 +84,6 @@ You can also use the flag```--weights``` to initialize the weights from a pre-tr
 
 A directory will be created in ```runs``` which saves everything like the model files, used config, logs and checkpoint.
 
-
-
 ## Semantic Auxiliary Training
 If you want to use our proposed semantic auxiliary training strategy, you need to first pre-train a semantic segmentation model. We provide codes for semantic auxiliary training using RangeNet++ in ```semantic_net/rangenet```. To use these codes, please first clone the [official codes](https://github.com/PRBonn/lidar-bonnetal) of RangeNet++ and pre-train a semantic segmentation model. 
 
@@ -98,7 +96,6 @@ After completing the above steps, you can start using semantic auxiliary trainin
 python train.py --dataset /PATH/TO/PROCESSED/dataset/
 ```
 *Note* that you need to set ```LOSS_WEIGHT_SEMANTIC``` in ```config/parameters.yaml``` to the weight you want (we recommend 1.0) instead of 0.0 before you run the training script.
-
 
 ## Testing
 Test your model by running
