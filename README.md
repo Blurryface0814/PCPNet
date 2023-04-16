@@ -11,12 +11,11 @@
 2. [Data](#Data)
 3. [Installation](#Installation)
 4. [Training](#Training)
-5. [Semantic](#Semantic)
-6. [Semantic Auxiliary Training](#Semantic Auxiliary Training)
-7. [Testing](#Testing)
-8. [Visualization](#Visualization)
-9. [Download](#Dwnload)
-10. [License](#License)
+5. [Semantic Auxiliary Training](#Semantic%20Auxiliary%20Training)
+6. [Testing](#Testing)
+7. [Visualization](#Visualization)
+8. [Download](#Dwnload)
+9. [License](#License)
 
 ![](figs/overall_architecture.png)
 *Overall architecture our proposed PCPNet. The input range images are first downsampled and compressed along the height and width dimensions respectively to generate the sentence-like features for the following Transformer blocks. The features are then combined and upsampled to the predicted range images and mask images. Semantic auxiliary training is used to enhance the practical value of point cloud prediction.*
@@ -84,8 +83,6 @@ python train.py --dataset /PATH/TO/PROCESSED/dataset/ --resume /PATH/TO/YOUR/MOD
 You can also use the flag```--weights``` to initialize the weights from a pre-trained model. Pass the flag ```--help``` if you want to see more options.
 
 A directory will be created in ```runs``` which saves everything like the model files, used config, logs and checkpoint.
-
-## Semantic
 
 ## Semantic Auxiliary Training
 If you want to use our proposed semantic auxiliary training strategy, you need to first pre-train a semantic segmentation model. We provide codes for semantic auxiliary training using RangeNet++ in ```semantic_net/rangenet```. To use these codes, please first clone the [official codes](https://github.com/PRBonn/lidar-bonnetal) of RangeNet++ and pre-train a semantic segmentation model. 
