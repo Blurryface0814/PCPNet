@@ -1,0 +1,99 @@
+EXPERIMENT:
+  ID: PCPNet # Give your experiment a unique ID which is used in the log
+
+DATA_CONFIG:
+  DATASET_NAME: KITTIOdometry
+  GENERATE_FILES: False # If true, the data will be pre-processed
+  COMPUTE_MEAN_AND_STD: False # If true, the mean and std of the training data will be computed to use it in MEAN and STD.
+  RANDOM_SEED: 1 # Set random seed for torch, numpy and python
+  DATALOADER:
+    NUM_WORKER: 4
+    SHUFFLE: True
+  SPLIT: # Specify the sequences here. We follow the KITTI format.
+    TRAIN:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+    VAL:
+      - 6
+      - 7
+    TEST:
+      - 8
+      - 9
+      - 10
+     
+  HEIGHT: 64 # Height of range images
+  WIDTH: 2048 # Width of range images
+  FOV_UP: 3.0 # Depends on the used LiDAR sensor
+  FOV_DOWN: -25.0 # Depends on the used LiDAR sensor
+  MAX_RANGE: 85.0 # Average max value in training set
+  MIN_RANGE: 1.0 # Average min value in training set
+  MEAN: 
+    - 10.839 # Range
+    - 0.005 # X
+    - 0.494 # Y
+    - -1.13 # Z
+    - 0.287 # Intensity
+    
+  STD:
+    - 9.314 # Range
+    - 11.521 # X
+    - 8.262 # Y
+    - 0.828 # Z
+    - 0.14 # Intensity
+
+MODEL:
+  N_PAST_STEPS: 5 # Number of input range images
+  N_FUTURE_STEPS: 5 # Number of predicted future range images
+  MASK_THRESHOLD: 0.5 # Threshold for valid point mask classification
+  USE:
+    XYZ: False # If true: x,y, and z coordinates will be used as additional input channels
+    INTENSITY: False # If true: intensity will be used as additional input channel
+  CHANNELS: # Number of channels in pre-encoder and post-decoder, respectively.
+    - 16
+    - 32
+    - 64
+  SKIP_IF_CHANNEL_SIZE: # Adds a skip connection between pre-encoder and post-decoder at desired channels
+    - 32
+    - 64
+  TRANSFORMER_H_LAYERS: 4   # Number of layers in transfomer_H
+  TRANSFORMER_W_LAYERS: 4   # Number of layers in transfomer_W
+  CIRCULAR_PADDING: True
+  NORM: batch # batch, group, none, instance
+  N_CHANNELS_PER_GROUP: 16
+  SEMANTIC_NET: rangenet
+  SEMANTIC_DATA_CONFIG: semantic-kitti.yaml
+  SEMANTIC_PRETRAINED_MODEL: squeezesegV2
+
+TRAIN:
+  LR: 0.001
+  LR_EPOCH: 1
+  LR_DECAY: 0.99
+  MAX_EPOCH: 50
+  BATCH_SIZE: 2
+  BATCH_ACC: 4
+  N_GPUS: 1
+  LOG_EVERY_N_STEPS: 10
+  LOSS_WEIGHT_CHAMFER_DISTANCE: 0.0
+  LOSS_WEIGHT_RANGE_VIEW: 1.0
+  LOSS_WEIGHT_MASK: 1.0
+  LOSS_WEIGHT_SEMANTIC: 0.0
+  CHAMFER_DISTANCE_EVERY_N_VAL_EPOCH: 5 # Log chamfer distance every N val epoch.
+
+VALIDATION:
+  SELECTED_SEQUENCE_AND_FRAME: # Only log point clouds for selected validation sequence and frame.
+    6:
+      - 10
+
+TEST:
+  N_BATCHES_TO_SAVE: -1 # If set to -1 and SAVE_POINT_CLOUDS is true, all batches of the test set will be saved.
+  SAVE_POINT_CLOUDS: False
+  ONLY_SAVE_POINT_CLOUDS: False # Only save point clouds, not compute loss
+  SEMANTIC_SIMILARITY: False # compute semantic similarity
+  N_DOWNSAMPLED_POINTS_CD: -1 # Can evaluate the CD on downsampled point clouds. Set -1 to evaluate on full point clouds.
+  SELECTED_SEQUENCE_AND_FRAME: # Only log point clouds for selected test sequence and frame.
+    8:
+      - 120
