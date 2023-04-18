@@ -99,7 +99,7 @@ If you want to use our proposed semantic auxiliary training strategy, you need t
 
 *Note that we recommend using squeezesegV2 backbone without CRF and only use ```range``` in the ```input_depth``` option while training RangeNet++, according to the codes we are currently providing.* If you want to use other backbones, please make corresponding modifications to ```class loss_semantic```  in ```pcpnet/models/loss.py```.
 
-Once you have completed the pre-training, you need to copy the folder containing the pre-trained model to ```semantic_net/rangenet/model``` and modify ```SEMANTIC_PRETRAINED_MODEL``` in ```config/parameters.yaml```  to the folder name.
+Once you have completed the pre-training, you need to copy the folder containing the pre-trained model to ```semantic_net/rangenet/model/``` and modify ```SEMANTIC_PRETRAINED_MODEL``` in ```config/parameters.yaml```  to the folder name.
 
 After completing the above steps, you can start to use semantic auxiliary training by running the training script by
 ```bash
