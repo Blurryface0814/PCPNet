@@ -19,7 +19,8 @@ Developed by [Zhen Luo](https://github.com/Blurryface0814) and [Junyi Ma](https:
 6. [Testing](#Testing)
 7. [Visualization](#Visualization)
 8. [Download](#Dwnload)
-9. [License](#License)
+9. [Acknowledgment](#Acknowledgment)
+10. [License](#License)
 
 ![](figs/overall_architecture.png)
 *Overall architecture of our proposed PCPNet. The input range images are first downsampled and compressed along the height and width dimensions respectively to generate the sentence-like features for the following Transformer blocks. The enhanced features are then combined and upsampled to the predicted range images and mask images. Semantic auxiliary training is used to improve the practical value of predicted point clouds.*
@@ -124,6 +125,9 @@ Please download the car model from [here](https://drive.google.com/drive/folders
 
 ## Download
 You can download our pre-trained model from this [link](https://drive.google.com/drive/folders/1p9q_SoXOsigi8vB_bXxWNZbU-ypSm19J?usp=share_link). Just extract the zip file into ```runs```.
+
+## Acknowledgment
+We would like to thank Benedikt Mersch, Andres Milioto and Christian Diller for their significant contributions in the field of point cloud processing. Some of the code in this repo is borrowed from [TCNet](https://github.com/PRBonn/point-cloud-prediction), [RangeNet++](https://github.com/PRBonn/lidar-bonnetal), and [pyTorchChamferDistance](https://github.com/chrdiller/pyTorchChamferDistance), thanks all authors fortheir awesome projects.
 
 ## License
 This project is free software made available under the MIT License. For details see the LICENSE file.
