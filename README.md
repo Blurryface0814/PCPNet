@@ -116,7 +116,7 @@ Please download the car model from [here](https://drive.google.com/drive/folders
 
 
 ## Download
-You can download our pre-trained model from this [link](). Just extract the zip file into ```runs```.
+You can download our pre-trained model from this [link](https://drive.google.com/drive/folders/1p9q_SoXOsigi8vB_bXxWNZbU-ypSm19J?usp=share_link). Just extract the zip file into ```runs```.
 
 ## License
 This project is free software made available under the MIT License. For details see the LICENSE file.
