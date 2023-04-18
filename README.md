@@ -25,10 +25,17 @@ Developed by [Zhen Luo](https://github.com/Blurryface0814) and [Junyi Ma](https:
 *Overall architecture of our proposed PCPNet. The input range images are first downsampled and compressed along the height and width dimensions respectively to generate the sentence-like features for the following Transformer blocks. The enhanced features are then combined and upsampled to the predicted range images and mask images. Semantic auxiliary training is used to improve the practical value of predicted point clouds.*
 
 ## Publication
-If you use our code in your academic work, please cite the corresponding [paper]():
+If you use our code in your academic work, please cite the corresponding [paper](https://arxiv.org/abs/2304.07773):
     
 ```latex
-
+@misc{luo2023pcpnet,
+      title={PCPNet: An Efficient and Semantic-Enhanced Transformer Network for Point Cloud Prediction}, 
+      author={Zhen Luo and Junyi Ma and Zijie Zhou and Guangming Xiong},
+      year={2023},
+      eprint={2304.07773},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV}
+}
 ```
 
 ## Dataset
