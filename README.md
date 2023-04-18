@@ -127,7 +127,7 @@ Please download the car model from [here](https://drive.google.com/drive/folders
 You can download our pre-trained model from this [link](https://drive.google.com/drive/folders/1p9q_SoXOsigi8vB_bXxWNZbU-ypSm19J?usp=share_link). Just extract the zip file into ```runs```.
 
 ## Acknowledgment
-We would like to thank Benedikt Mersch, Andres Milioto and Christian Diller for their significant contributions in the field of point cloud processing. Some of the code in this repo is borrowed from [TCNet](https://github.com/PRBonn/point-cloud-prediction), [RangeNet++](https://github.com/PRBonn/lidar-bonnetal), and [pyTorchChamferDistance](https://github.com/chrdiller/pyTorchChamferDistance), thanks all authors fortheir awesome projects.
+We would like to thank Benedikt Mersch, Andres Milioto and Christian Diller for their significant contributions in the field of point cloud processing. Some of the code in this repo is borrowed from [TCNet](https://github.com/PRBonn/point-cloud-prediction), [RangeNet++](https://github.com/PRBonn/lidar-bonnetal), and [pyTorchChamferDistance](https://github.com/chrdiller/pyTorchChamferDistance), thanks all authors for their awesome projects.
 
 ## License
 This project is free software made available under the MIT License. For details see the LICENSE file.
