@@ -1,5 +1,7 @@
 # PCPNet: An Efficient and Semantic-Enhanced Transformer Network for Point Cloud Prediction
 
+Accepted by IEEE RA-L.
+
 Developed by [Zhen Luo](https://github.com/Blurryface0814) and [Junyi Ma](https://github.com/BIT-MJY).
 
 <img src="figs/motivation.png" width="70%" />
