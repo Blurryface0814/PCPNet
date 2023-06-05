@@ -31,14 +31,15 @@ Developed by [Zhen Luo](https://github.com/Blurryface0814) and [Junyi Ma](https:
 If you use our code in your academic work, please cite the corresponding [paper](https://arxiv.org/abs/2304.07773):
     
 ```latex
-@misc{luo2023pcpnet,
-      title={PCPNet: An Efficient and Semantic-Enhanced Transformer Network for Point Cloud Prediction}, 
-      author={Zhen Luo and Junyi Ma and Zijie Zhou and Guangming Xiong},
-      year={2023},
-      eprint={2304.07773},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV}
-}
+@ARTICLE{10141631,
+  author={Luo, Zhen and Ma, Junyi and Zhou, Zijie and Xiong, Guangming},
+  journal={IEEE Robotics and Automation Letters}, 
+  title={PCPNet: An Efficient and Semantic-Enhanced Transformer Network for Point Cloud Prediction}, 
+  year={2023},
+  volume={},
+  number={},
+  pages={1-8},
+  doi={10.1109/LRA.2023.3281937}}
 ```
 
 ## Dataset
