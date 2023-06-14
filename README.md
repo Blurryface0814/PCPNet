@@ -36,9 +36,9 @@ If you use our code in your academic work, please cite the corresponding [paper]
   journal={IEEE Robotics and Automation Letters}, 
   title={PCPNet: An Efficient and Semantic-Enhanced Transformer Network for Point Cloud Prediction}, 
   year={2023},
-  volume={},
-  number={},
-  pages={1-8},
+  volume={8},
+  number={7},
+  pages={4267-4274},
   doi={10.1109/LRA.2023.3281937}}
 ```
 
